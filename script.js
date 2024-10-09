@@ -1,16 +1,33 @@
-let title = 'Название проекта';
-let screens = 'Простые, Сложные, Интерактивные';
-let screenPrice = 46;
-let rollBack = 74;
-let fullPrice = 1500;
-let adaptive = true;
+let title = prompt('Как называется ваш проект?');
+let screens = prompt('Какие типы экранов нужно разработать?', 'Простые, Сложные, Интерактивные');
+let screenPrice = prompt('Сколько будет стоить данная работа?', '12000');
+let fullPrice = screenPrice + servicePrice1 + servicePrice2;
+let rollBack = fullPrice * (25 / 100);
+let adaptive = confirm('Нужен ли адаптив на сайте?');
+let service1 = prompt('Какой дополнительный тип услуги нужен?')
+let servicePrice1 = prompt('Сколько это будет стоить?')
+let service2 = prompt('Какой дополнительный тип услуги нужен?')
+let servicePrice2 = prompt('Сколько это будет стоить?')
+let servicePercentPrice = Math.ceil(fullPrice - rollBack)
 
-console.log(typeof title, typeof fullPrice, typeof adaptive)
-console.log(screens.length)
+console.log(servicePercentPrice)
+
+switch (true) {
+    case fullPrice >= 30000:
+        console.log('Даем скидку в 10%');
+        break
+    case fullPrice >= 15000 && fullPrice < 30000:
+        console.log('Даем скидку в 5%');
+        break
+    case fullPrice < 15000 && fullPrice > 0:
+        console.log('Скидка не предусмотрена');
+        break
+    case fullPrice <= 0:
+        console.log('Что то пошло не так');
+        break
+
+}
+
 console.log('Стоимость верстки экранов' + " " + screenPrice + " " + 'рублей/ долларов/гривен/юани')
 
 console.log('Стоимость разработки сайта' + ' ' + fullPrice + ' ' + 'рублей/ долларов/гривен/юани')
-
-console.log(screens.toLowerCase().split())
-
-console.log(fullPrice * rollBack / 100)
