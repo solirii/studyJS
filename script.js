@@ -6,11 +6,34 @@ let service1 = prompt('Какой дополнительный тип услуг
 let servicePrice1 = +prompt('Сколько это будет стоить?')
 let service2 = prompt('Какой дополнительный тип услуги нужен?')
 let servicePrice2 = +prompt('Сколько это будет стоить?')
-let fullPrice = screenPrice + servicePrice1 + servicePrice2;
-let rollBack = fullPrice * (25 / 100);
-let servicePercentPrice = Math.ceil(fullPrice - rollBack)
+let fullPrice
+let rollBack = 10
+let servicePercentPrice
 
-console.log(servicePercentPrice)
+
+const allServicePrices = function getAllServicePrices() {
+    return servicePrice1 + servicePrice2
+}
+
+function getFullPrice() {
+    return screenPrice + allServicePrices()
+}
+
+fullPrice = getFullPrice()
+
+function getTitle() {
+    let firstChar = title.replace(/ /g, '').charAt(0)
+    let upperFirstChar = firstChar.toUpperCase()
+    let restOfTitle = title.slice(1).toLowerCase()
+    let newTitle = (upperFirstChar + restOfTitle)
+    return newTitle
+}
+
+function getServicePercentPrices() {
+    return Math.ceil(fullPrice - (fullPrice * (rollBack / 100)))
+}
+
+servicePercentPrice = getServicePercentPrices()
 
 switch (true) {
     case fullPrice >= 30000:
@@ -27,6 +50,17 @@ switch (true) {
         break
 
 }
+
+console.log(typeof title)
+console.log(typeof screenPrice)
+console.log(typeof adaptive)
+
+
+console.log(fullPrice)
+
+console.log(getTitle())
+
+console.log(servicePercentPrice)
 
 console.log('Стоимость верстки экранов' + " " + screenPrice + " " + 'рублей/ долларов/гривен/юани')
 
